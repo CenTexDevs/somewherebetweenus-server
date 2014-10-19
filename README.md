@@ -1,2 +1,3 @@
-somewherebetweenus-server
-=========================
+# testsails
+
+a [Sails](http://sailsjs.org) application

@@ -1,0 +1,17 @@
+/**
+ * UserController
+ *
+ * @description :: Server-side logic for managing users
+ * @help        :: See http://links.sailsjs.org/docs/controllers
+ */
+
+module.exports = {
+	useHelloWorldService : function(req,res){
+		var result = HelloWorldService.alertHelloWorld();
+		res.write(result);
+		var person = JSON.parse(result);
+		res.write(person.name);
+		res.end();
+	}
+};
+
