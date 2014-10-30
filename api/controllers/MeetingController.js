@@ -8,7 +8,7 @@
 module.exports = {
   useGuestService : function(req,res){
     GuestService.callGuestModel(function(result){
-      res.write(JSON.stringify(result));
+      res.write('done');//res.write(JSON.stringify(result));
       res.end();
     });
   },
