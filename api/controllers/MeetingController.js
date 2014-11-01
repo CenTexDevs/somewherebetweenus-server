@@ -6,9 +6,21 @@
  */
 
 module.exports = {
-  useGuestService : function(req,res){
-    GuestService.callGuestModel(function(result){
-      res.write('done');//res.write(JSON.stringify(result));
+  addguest : function(req,res){
+    var _nickname = req.body.nickname;
+    var _meetingid = req.body.meetingid;
+    var _latitude = req.body.latitude;
+    var _longitude = req.body.longitude;
+
+    //add validation on params
+    
+    var guest = {'nickname':_nickname,
+      'meetingID':_meetingid,
+      'latitude':_latitude,
+      'longitude':_longitude};
+      
+    GuestService.createGuest(guest,function(result){
+      res.write(JSON.stringify(result));
       res.end();
     });
   },
@@ -23,13 +35,6 @@ module.exports = {
 
 
   /**
-   * `MeetingController.addguest()`
-   */
-  addguest: function (req, res) {
-    return res.json({
-      todo: 'addguest() is not implemented yet!'
-    });
-  },
 
 
   /**
@@ -48,6 +53,18 @@ module.exports = {
   getcenter: function (req, res) {
     return res.json({
       todo: 'getcenter() is not implemented yet!'
+    });
+  },
+  
+  getguests: function(req,res){
+    var id = '12345';
+    GuestService.getMeetingGuests(id,function(guests){
+      
+      for (var i=0; i<guests.length; i++) {
+	res.write(guests[i].nickname+'\n');
+      }
+      
+      res.end();
     });
   }
 };

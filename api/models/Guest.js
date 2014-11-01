@@ -22,16 +22,19 @@ module.exports = {
         type:'float'
     }
   },
-  findByMeeting: function(meetingID,cb) {
-
-    Guest.findBymeetingID(meetingID).exec(function (err, guests) {
+  findByMeetingID: function(meetingID,cb) {
+    Guest.find({'meetingID':meetingID}).exec(function (err, guests) {
       if (err) return cb(err);
       if (!guests) return cb(new Error('User not found.'));
       return cb(guests);
     });
   },
-  getBasicArray:function(cb){
-    return cb({'key1':'value1'});
+  findByMeetingIDAndNickname: function(meetingID,nickname,cb) {
+    Guest.find({'meetingID':meetingID,'nickname':nickname}).exec(function (err, guests) {
+      if (err) return cb(err);
+      if (!guests) return cb(new Error('User not found.'));
+      return cb(guests);
+    });
   }
 };
 

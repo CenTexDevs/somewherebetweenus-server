@@ -1,13 +1,14 @@
 // HelloWorldService.js - in api/services
 module.exports = {
 
-    callGuestModel: function(cb) {
-
-
-
-	var guest = {'nickname':'rob','meetingID':'12345','latitude':30.5,'longitude':-97.5};
-	Guest.create({nickname:'rob',meetingID:'12345',latitude:30.5,longitude:-97.5}).exec(function createGuest(err,created){cb(created)});
-        //cb(result);
-	//return Guest.getBasicArray(cb);
+    createGuest: function(guest,cb) {
+	Guest.create(guest).exec(function createGuest(err,created){cb(created)});
+    },
+    
+    getMeetingGuests: function(meetingID,cb) {
+	Guest.findByMeetingID(meetingID).exec(function handleResult(err,guests){cb(guests)});
+    },
+    getMeetingGuest: function(meetingID,nickname,cb) {
+	Guest.findByMeetingID(meetingID,nickname).exec(function handleResult(err,guests){cb(guests)});
     }
 };
