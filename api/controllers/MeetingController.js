@@ -7,10 +7,10 @@
 
 module.exports = {
   addguest : function(req,res){
-    var _nickname = req.body.nickname;
-    var _meetingid = req.body.meetingid;
-    var _latitude = req.body.latitude;
-    var _longitude = req.body.longitude;
+    var _nickname = req.query.nickname;
+    var _meetingid = req.query.meetingid;
+    var _latitude = req.query.latitude;
+    var _longitude = req.query.longitude;
 
     //add validation on params
     
@@ -28,8 +28,17 @@ module.exports = {
    * `MeetingController.create()`
    */
   create: function (req, res) {
-    return res.json({
-      todo: 'create() is not implemented yet!'
+    var _nickname = req.query.nickname;
+    var _meetingid = req.query.meetingid;
+
+    //add validation on params
+    
+    var guest = {'nickname':_nickname,
+      'meetingID':_meetingid};
+      
+    GuestService.removeGuest(guest,function(result){
+      res.write(JSON.stringify(result));
+      res.end();
     });
   },
 
@@ -41,8 +50,17 @@ module.exports = {
    * `MeetingController.removeguest()`
    */
   removeguest: function (req, res) {
-    return res.json({
-      todo: 'removeguest() is not implemented yet!'
+    var _nickname = req.query.nickname;
+    var _meetingid = req.query.meetingid;
+
+    //add validation on params
+    
+    var guest = {'nickname':_nickname,
+      'meetingID':_meetingid};
+      
+    GuestService.removeGuest(guest,function(result){
+      res.write(JSON.stringify(result));
+      res.end();
     });
   },
 
@@ -57,8 +75,8 @@ module.exports = {
   },
   
   getguests: function(req,res){
-    var id = '12345';
-    GuestService.getMeetingGuests(id,function(guests){
+    var _meetingid = req.query.meetingid;
+    GuestService.getMeetingGuests(_meetingid,function(guests){
       
       for (var i=0; i<guests.length; i++) {
 	res.write(guests[i].nickname+'\n');
