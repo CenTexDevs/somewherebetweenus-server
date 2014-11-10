@@ -35,6 +35,13 @@ module.exports = {
       if (!guests) return cb(new Error('User not found.'));
       return cb(guests);
     });
+  },
+  updateGuestLocation: function(meetingID,nickname,latitude,longitude,cb) {
+    Guest.update({'meetingID':meetingID,'nickname':nickname},{'latitude':latitude,'longitude':longitude}).exec(function (err, guest) {
+      if (err) return cb(err);
+      if (!guest) return cb(new Error('User not found.'));
+      return cb(guest);
+    });
   }
 };
 

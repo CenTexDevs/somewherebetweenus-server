@@ -6,24 +6,6 @@
  */
 
 module.exports = {
-  addguest : function(req,res){
-    var _nickname = req.query.nickname;
-    var _meetingid = req.query.meetingid;
-    var _latitude = req.query.latitude;
-    var _longitude = req.query.longitude;
-
-    //add validation on params
-    
-    var guest = {'nickname':_nickname,
-      'meetingID':_meetingid,
-      'latitude':_latitude,
-      'longitude':_longitude};
-      
-    GuestService.createGuest(guest,function(result){
-      res.write(JSON.stringify(result));
-      res.end();
-    });
-  },
   /**
    * `MeetingController.create()`
    */
@@ -42,9 +24,24 @@ module.exports = {
     });
   },
 
+  addguest : function(req,res){
+    var _nickname = req.query.nickname;
+    var _meetingid = req.query.meetingid;
+    var _latitude = req.query.latitude;
+    var _longitude = req.query.longitude;
 
-  /**
-
+    //add validation on params
+    
+    var guest = {'nickname':_nickname,
+      'meetingID':_meetingid,
+      'latitude':_latitude,
+      'longitude':_longitude};
+      
+    GuestService.createGuest(guest,function(result){
+      res.write(JSON.stringify(result));
+      res.end();
+    });
+  },
 
   /**
    * `MeetingController.removeguest()`
@@ -69,8 +66,10 @@ module.exports = {
    * `MeetingController.getcenter()`
    */
   getcenter: function (req, res) {
-    return res.json({
-      todo: 'getcenter() is not implemented yet!'
+    var _meetingid = req.query.meetingid;
+    MeetingService.getCenter(_meetingid,function(location){
+	res.write(JSON.stringify(location)+'\n');
+         res.end();
     });
   },
   

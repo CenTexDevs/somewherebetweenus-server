@@ -6,9 +6,18 @@
 */
 
 module.exports = {
-
+  connection: 'someMongodbServer',
+  
   attributes: {
-
+    meetingID:{
+        type:'string'
+    }
+  },
+  findAll: function(cb) {
+    Meeting.find().exec(function (err, meetings) {
+      if (err) return cb(err);
+      if (!meetings) return cb(new Error('Meetings not found.'));
+      return cb(meetings);
+    });
   }
 };
-
