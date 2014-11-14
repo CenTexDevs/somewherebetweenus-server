@@ -11,9 +11,12 @@ module.exports = {
         var _address = req.query.address;
         _address = {'address':_address};
         GoogleMapsService.getGeoLocationFromAddress(_address,function(result){
-        res.write(JSON.stringify(result));
+        res.write('latitude:'+result.latitude+'  longitude:'+result.longitude);
         res.end();
     });
   },
 };
+
+
+
 

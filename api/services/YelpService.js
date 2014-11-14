@@ -19,12 +19,12 @@ module.exports = {
 	    token_secret: "c4QpX-2fI4vv9DkkowQvg1UojJg"
 	});
 	
-	console.log(JSON.stringify(midCoordinate));
+	//console.log(JSON.stringify(midCoordinate));
 	var ll=location.latitude+","+location.longitude;
 
 	yelp.search({term: venueType, ll:ll, limit:"5"}, function(error, data) {
 	    function TransformYelpResults(yelpBusiness) {
-		console.log(yelpBusiness);
+		//console.log(yelpBusiness);
 		return {
 		    name:yelpBusiness.name,
 		    imageUrl:yelpBusiness.image_url,
@@ -42,7 +42,7 @@ module.exports = {
     
 	    var venues = data.businesses.map(TransformYelpResults);
 	    for (var i = 0; i < venues.length; i++) {
-		console.log('venue:'+i);
+		//console.log('venue:'+i);
 		var venue = {
 		    name:venues[i].name,
 		    imageUrl:venues[i].imageUrl,
@@ -53,7 +53,7 @@ module.exports = {
 		    url:venues[i].url,
 		    coordinates:null
 		};
-		console.log(venue.name);
+		//console.log(venue.name);
 		markerResults.push(venue);
 	    };
 

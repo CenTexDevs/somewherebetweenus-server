@@ -2,11 +2,11 @@
 module.exports = {
 
     createGuest: function(guest,cb) {
-	Guest.create(guest).exec(function createGuest(err,created){cb(created)});
+	Guest.create(guest).exec(function createGuest(err,created){cb(created);});
     },
     
     removeGuest: function(guest,cb) {
-	Guest.destroy({meetingID:guest.meetingID,nickname:guest.nickname}).exec(function createGuest(err,deleted){cb(deleted)});
+	Guest.destroy({meetingID:guest.meetingID,nickname:guest.nickname}).exec(function removeGuest(err,deleted){cb(deleted)});
     },
 
     getMeetingGuests: function(meetingID,cb) {
