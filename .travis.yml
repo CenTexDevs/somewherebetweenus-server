@@ -4,4 +4,4 @@ node_js:
 before_script:
   - 'npm install -g bower grunt-cli'
 after_success:
- - 'curl -l http://somewherebetween.us:8080/update_server.php
+ - 'curl -l http://somewherebetween.us:8080/update_server.php'
