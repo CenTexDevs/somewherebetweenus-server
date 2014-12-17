@@ -28,8 +28,8 @@
     "yelp": "0.1.1"
   },
   "scripts": {
-    "start": "sails lift",
-    "debug": "sails lift"
+    "start": "node app.js",
+    "debug": "node debug app.js"
   },
   "main": "app.js",
   "repository": {
