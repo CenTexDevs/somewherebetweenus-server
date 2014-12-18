@@ -76,12 +76,13 @@ module.exports.connections = {
   ***************************************************************************/
   productionMongoHqDb: {
     adapter: 'sails-mongo',
-    //url: process.env.MONGOHQ_URL
-    host: 'ds027741.mongolab.com',
-    port: 27741,
-     user: 'heroku_app32609693',
-    password: 'mongo123',
-    database: 'heroku_app32609693'  },
+    url:  'mongodb://centexdev:sapdrows@ds027741.mongolab.com:27741/heroku_app32609693'
+    //host: 'ds027741.mongolab.com',
+    //port: 27741,
+    //user: 'heroku_app32609693',
+    //password: 'mongo123',
+    //database: 'heroku_app32609693'  
+  },
 
   /***************************************************************************
   *                                                                          *
