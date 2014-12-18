@@ -57,7 +57,7 @@ module.exports.connections = {
   *                                                                          *
   ***************************************************************************/
   someMongodbServer_old: {
-    adapter: 'sails-mongo',
+    adapter: 'sails-mongo_1',
     host: 'localhost',
     port: 27017,
     // user: 'username',
@@ -65,7 +65,7 @@ module.exports.connections = {
      database: 'somewherebetweenus-server1'
   },
   someMongodbServer: {
-    adapter: 'sails-mongo',
+    adapter: 'sails-mongo_1',
     url: process.env.MONGOHQ_URL
   },
 
