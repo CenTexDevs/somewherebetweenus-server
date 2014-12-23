@@ -1,13 +1,7 @@
 language: node_js
 node_js:
   - '0.10'
-
 before_script:
   - 'npm install -g bower grunt-cli'
-
 after_success:
  - 'curl -l http://somewherebetween.us:8080/update_server.php'
-
-deploy:
-- provider: heroku
-  api_key: 'd2757858-57df-4036-9980-a5143ca522f1'
