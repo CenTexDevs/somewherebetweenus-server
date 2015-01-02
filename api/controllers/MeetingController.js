@@ -24,6 +24,24 @@ module.exports = {
     });
   },
 
+  inviteGuest : function(req,res){
+    var _smsNumber = req.query.smsNumber;
+    var _fromUsername = req.query.fromUsername;
+    var _groupID = req.query.groupID;
+
+    //add validation on params
+    
+    var invitation = {'smsNumber':_smsNumber,
+      'fromUsername':_fromUsername,
+      'groupID':_groupID
+    };
+      
+    GuestService.inviteGuest(invitation,function(result){
+      res.write(JSON.stringify(result));
+      res.end();
+    });
+  },
+
   addguest : function(req,res){
     var _nickname = req.query.nickname;
     var _meetingid = req.query.meetingid;
