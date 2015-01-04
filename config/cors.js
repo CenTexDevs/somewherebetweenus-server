@@ -74,5 +74,5 @@ module.exports.cors = {
   *                                                                          *
   ***************************************************************************/
 
-  headers: 'content-type,X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Date, X-Api-Version, X-File-Name, Authorization'
+  headers: 'Access-Control-Allow-Origin,content-type,X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Date, X-Api-Version, X-File-Name, Authorization'
 };
