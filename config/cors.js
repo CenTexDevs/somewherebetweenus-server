@@ -47,7 +47,7 @@ module.exports.cors = {
   *                                                                          *
   ***************************************************************************/
 
-  origin: '*',
+  origin: '*,localhost,http://localhost,http://localhost:3000',
   //origin: 'http://somewherebetweenus-server.herokuapp.com/,http://www.somewherebetween.us,http://somewherebetween.us',
 
   /***************************************************************************
