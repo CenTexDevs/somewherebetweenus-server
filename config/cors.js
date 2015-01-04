@@ -47,7 +47,7 @@ module.exports.cors = {
   *                                                                          *
   ***************************************************************************/
 
-  origin: '*',
+  //origin: '*',
   //origin: 'http://somewherebetweenus-server.herokuapp.com/,http://www.somewherebetween.us,http://somewherebetween.us',
 
   /***************************************************************************
@@ -56,7 +56,7 @@ module.exports.cors = {
   *                                                                          *
   ***************************************************************************/
 
-  credentials: true,
+  //credentials: true,
 
   /***************************************************************************
   *                                                                          *
@@ -65,7 +65,7 @@ module.exports.cors = {
   *                                                                          *
   ***************************************************************************/
 
-  methods: 'GET, POST, PUT, DELETE, OPTIONS, HEAD',
+  //methods: 'GET, POST, PUT, DELETE, OPTIONS, HEAD',
 
   /***************************************************************************
   *                                                                          *
@@ -74,5 +74,5 @@ module.exports.cors = {
   *                                                                          *
   ***************************************************************************/
 
-   headers: 'content-type'
+   //headers: 'content-type'
 };
