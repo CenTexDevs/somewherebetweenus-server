@@ -83,7 +83,7 @@ module.exports = {
    * `MeetingController.removeguest()`
    */
   removeguest: function (req, res) {
-    var _guestid = req.param('guestid;
+    var _guestid = req.param('guestid');
     var _meetingid = req.param('meetingid;
 
     //add validation on params
