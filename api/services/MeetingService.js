@@ -5,10 +5,6 @@ module.exports = {
 	Meeting.create(meeting).exec(function createGuest(err,created){cb(created)});
     },
     
-    removeGuest: function(meeting,cb) {
-	Meeting.destroy({meetingID:meeting.meetingID}).exec(function removeGuest(err,deleted){cb(deleted)});
-    },
-
     findAll: function(cb) {
 	Meeting.findAll().exec(function findAll(err,meetings){cb(meetings)});
     },

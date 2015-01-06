@@ -8,6 +8,9 @@
 module.exports = {
   
   attributes: {
+    guestID:{
+      type:'string'
+    },
     nickname:{
         type:'string'
     },
@@ -28,15 +31,15 @@ module.exports = {
       return cb(guests);
     });
   },
-  findByMeetingIDAndNickname: function(meetingID,nickname,cb) {
-    Guest.find({'meetingID':meetingID,'nickname':nickname}).exec(function (err, guests) {
+  findByMeetingIDAndNickname: function(meetingID,guestID,cb) {
+    Guest.find({'meetingID':meetingID,'guestID':guestID}).exec(function (err, guests) {
       if (err) return cb(err);
       if (!guests) return cb(new Error('User not found.'));
       return cb(guests);
     });
   },
-  updateGuestLocation: function(meetingID,nickname,latitude,longitude,cb) {
-    Guest.update({'meetingID':meetingID,'nickname':nickname},{'latitude':latitude,'longitude':longitude}).exec(function (err, guest) {
+  updateGuestLocation: function(meetingID,guestID,latitude,longitude,cb) {
+    Guest.update({'meetingID':meetingID,'guestID':guestID},{'latitude':latitude,'longitude':longitude}).exec(function (err, guest) {
       if (err) return cb(err);
       if (!guest) return cb(new Error('User not found.'));
       return cb(guest);

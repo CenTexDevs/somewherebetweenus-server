@@ -6,14 +6,14 @@ module.exports = {
     },
     
     removeGuest: function(guest,cb) {
-	Guest.destroy({meetingID:guest.meetingID,nickname:guest.nickname}).exec(function removeGuest(err,deleted){cb(deleted)});
+	Guest.destroy({meetingID:guest.meetingID,guestID:guest.guestID}).exec(function removeGuest(err,deleted){cb(deleted)});
     },
 
     getMeetingGuests: function(meetingID,cb) {
 	Guest.findByMeetingID(meetingID).exec(function handleResult(err,guests){cb(guests)});
     },
-    getMeetingGuest: function(meetingID,nickname,cb) {
-	Guest.findByMeetingID(meetingID,nickname).exec(function handleResult(err,guests){cb(guests)});
+    getMeetingGuest: function(meetingID,guestID,cb) {
+	Guest.findByMeetingID(meetingID,guestID).exec(function handleResult(err,guests){cb(guests)});
     },
 
     inviteGuest: function(invitation, cb){
@@ -28,7 +28,7 @@ module.exports = {
                 var googl = require('goo.gl');
 
                 // Shorten a long url and output the result
-                googl.shorten('http://www.google.com/')
+                googl.shorten('http://www.somewherebetween.us/joingroup.html?meetingID='+invitation.meetingID)
                     .then(function (shortUrl) {
                         console.log('step 2 - end');
                         callback(null,shortUrl);
@@ -44,7 +44,7 @@ module.exports = {
                 //sms part
                 var request = require('request');
 
-                var msg = invitation.fromUsername+' has invited you join their group on SomewhereBetween.US. ';
+                var msg = invitation.nickname+' has invited you join their group on SomewhereBetween.US. ';
                 msg += 'Click to join: ' + shortUrl;
 
                 request.post(
