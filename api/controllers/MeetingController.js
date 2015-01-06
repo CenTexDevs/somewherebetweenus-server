@@ -42,14 +42,14 @@ module.exports = {
 
   inviteGuest : function(req,res){
     var _smsNumber = req.query.smsNumber;
-    var _fromUsername = req.query.fromUsername;
-    var _groupID = req.query.groupID;
+    var _nickname = req.query.nickname;
+    var _meetingID = req.query.meetingID;
 
     //add validation on params
     
     var invitation = {'smsNumber':_smsNumber,
-      'fromUsername':_fromUsername,
-      'groupID':_groupID
+      'nickname':_nickname,
+      'meetingID':_meetingID
     };
       
     GuestService.inviteGuest(invitation,function(result){
