@@ -19,7 +19,7 @@ module.exports = {
     inviteGuest: function(invitation, cb){
         var waterfall = require('async-waterfall');
 
-        console.log('before waterfall, smsnumber is '+invitation.smsNumber);
+        console.log('before waterfall, smsnumber is '+JSON.stringify(invitation));
 
         console.log('step 1');
         waterfall([
