@@ -10,9 +10,9 @@ module.exports = {
    * `MeetingController.create()`
    */
   create: function (req, res) {
-    var _nickname = req.query.nickname;
-    var _meetingid = req.query.meetingid;
-    var _guestid = req.query.guestid;
+    var _nickname = req.param('nickname');
+    var _meetingid = req.param('meetingid');
+    var _guestid = req.param('guestid');
 
     var waterfall = require('async-waterfall');
 
@@ -41,9 +41,9 @@ module.exports = {
   },
 
   inviteGuest : function(req,res){
-    var _smsNumber = req.params(['smsNumber']);
-    var _nickname = req.params(['nickname']);
-    var _meetingID = req.params(['nickname']);
+    var _smsNumber = req.param('smsNumber');
+    var _nickname = req.param('nickname');
+    var _meetingID = req.param('meetingID');
 
     //add validation on params
     
@@ -59,11 +59,11 @@ module.exports = {
   },
 
   addguest : function(req,res){
-    var _guestid = req.query.guestid;
-    var _nickname = req.query.nickname;
-    var _meetingid = req.query.meetingid;
-    var _latitude = req.query.latitude;
-    var _longitude = req.query.longitude;
+    var _guestid = req.param('guestid');
+    var _nickname = req.param('nickname');
+    var _meetingid = req.param('meetingid');
+    var _latitude = req.param('latitude');
+    var _longitude = req.param('longitude');
 
     //add validation on params
     
@@ -83,8 +83,8 @@ module.exports = {
    * `MeetingController.removeguest()`
    */
   removeguest: function (req, res) {
-    var _guestid = req.query.guestid;
-    var _meetingid = req.query.meetingid;
+    var _guestid = req.param('guestid;
+    var _meetingid = req.param('meetingid;
 
     //add validation on params
     
@@ -98,7 +98,7 @@ module.exports = {
   },
 
   listguests : function(req,res){
-    var _meetingid = req.query.meetingid;
+    var _meetingid = req.param('meetingid');
 
     //add validation on params
     
@@ -115,7 +115,7 @@ module.exports = {
    * `MeetingController.getcenter()`
    */
   getcenter: function (req, res) {
-    var _meetingid = req.query.meetingid;
+    var _meetingid = req.param('meetingid');
     MeetingService.getCenter(_meetingid,function(location){
       var location={'latitude':location.latitude,'longitude':location.longitude}
 	    res.write(JSON.stringify(location));
@@ -124,7 +124,7 @@ module.exports = {
   },
   
   getguests: function(req,res){
-    var _meetingid = req.query.meetingid;
+    var _meetingid = req.param('meetingid');
     GuestService.getMeetingGuests(_meetingid,function(guests){
       res.write(JSON.stringify(guests));
       res.end();
