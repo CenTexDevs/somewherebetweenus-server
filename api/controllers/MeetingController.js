@@ -84,7 +84,7 @@ module.exports = {
    */
   removeguest: function (req, res) {
     var _guestid = req.param('guestid');
-    var _meetingid = req.param('meetingid;
+    var _meetingid = req.param('meetingid');
 
     //add validation on params
     
