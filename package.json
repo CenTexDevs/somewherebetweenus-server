@@ -6,6 +6,7 @@
   "keywords": [],
   "dependencies": {
     "async-waterfall": "~0.1.5",
+    "body-parser": "~@1.10.1",
     "ejs": "~0.8.4",
     "goo.gl": "~0.1.2",
     "grunt": "0.4.2",
