@@ -19,6 +19,8 @@ module.exports = {
     inviteGuest: function(invitation, cb){
         var waterfall = require('async-waterfall');
 
+        console.log('before waterfall, smsnumber is '+invitation.smsNumber);
+
         console.log('step 1');
         waterfall([
             function(callback)
@@ -48,7 +50,7 @@ module.exports = {
                 msg += 'Click to join: ' + shortUrl;
 
                 console.log('requesting text to '+ invitation.smsNumber);
-                
+
                 request.post(
                     'http://textbelt.com/text',
                     { form: { number: invitation.smsNumber, message: msg } },
