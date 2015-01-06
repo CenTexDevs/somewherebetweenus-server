@@ -47,6 +47,8 @@ module.exports = {
                 var msg = invitation.nickname+' has invited you join their group on SomewhereBetween.US. ';
                 msg += 'Click to join: ' + shortUrl;
 
+                console.log('requesting text to '+ invitation.smsNumber);
+                
                 request.post(
                     'http://textbelt.com/text',
                     { form: { number: invitation.smsNumber, message: msg } },
