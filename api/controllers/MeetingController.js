@@ -110,6 +110,73 @@ module.exports = {
     });
   },
 
+  getmeetingmarkers: function(req,res){
+
+
+    var waterfall = require('async-waterfall');
+
+    waterfall([
+      function(callback) //get guests
+      {
+        var markers = [];
+
+        markers[markers.length] = { 'type':'guest',
+          'nickname' : 'rob',
+          'latitude' : 30.50,
+          'longitude': -97.50
+        };
+
+        markers[markers.length] = { 'type':'guest',
+          'nickname' : 'tom',
+          'latitude' : 30.51,
+          'longitude': -97.51
+        };
+
+        markers[markers.length] = { 'type':'guest',
+          'nickname' : 'dave',
+          'latitude' : 30.52,
+          'longitude': -97.52
+        };
+
+          callback(null,markers);
+      },
+      function(markers, callback){ //get venues
+
+        markers[markers.length] = { 'type':'venue',
+          'votes' : 1,
+          'winner' : 'false',
+          'nickname' : 'taco bell',
+          'latitude' : 30.60,
+          'longitude': -97.50
+        };
+
+        markers[markers.length] = { 'type':'venue',
+          'votes' : 1,
+          'winner' : 'false',
+          'nickname' : 'burger king',
+          'latitude' : 30.61,
+          'longitude': -97.51
+        };
+
+        markers[markers.length] = { 'type':'venue',
+          'votes' : 2,
+          'winner' : 'true',
+          'nickname' : 'chik fil a',
+          'latitude' : 30.62,
+          'longitude': -97.52
+        };
+
+        callback(null,markers);
+      }
+    ], 
+    function(err,result){
+      if(result!= null)
+        res.write(JSON.stringify(result));
+      res.end();
+    });    
+
+  },
+
 
   /**
    * `MeetingController.getcenter()`
