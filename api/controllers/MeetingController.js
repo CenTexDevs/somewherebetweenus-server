@@ -11,23 +11,23 @@ module.exports = {
    */
   create: function (req, res) {
     var _nickname = req.param('nickname');
-    var _meetingid = req.param('meetingid');
-    var _guestid = req.param('guestid');
+    var _meetingID = req.param('meetingID');
+    var _guestID = req.param('guestID');
 
     var waterfall = require('async-waterfall');
 
     waterfall([
       function(callback)
       {
-        var meeting = {'meetingid':_meetingid};
+        var meeting = {'meetingID':_meetingID};
         MeetingService.createMeeting(meeting,function(result){
           callback(null);
         });
       },
       function(callback){
         var guest = {'nickname':_nickname,
-          'meetingID':_meetingid,
-          'guestID':_guestid};
+          'meetingID':_meetingID,
+          'guestID':_guestID};
         GuestService.createGuest(guest,function(result){
           callback(null);
         });
@@ -59,17 +59,17 @@ module.exports = {
   },
 
   addguest : function(req,res){
-    var _guestid = req.param('guestid');
+    var _guestID = req.param('guestID');
     var _nickname = req.param('nickname');
-    var _meetingid = req.param('meetingid');
+    var _meetingID = req.param('meetingID');
     var _latitude = req.param('latitude');
     var _longitude = req.param('longitude');
 
     //add validation on params
     
     var guest = {'nickname':_nickname,
-      'guestID':_guestid,
-      'meetingID':_meetingid,
+      'guestID':_guestID,
+      'meetingID':_meetingID,
       'latitude':_latitude,
       'longitude':_longitude};
       
@@ -83,13 +83,13 @@ module.exports = {
    * `MeetingController.removeguest()`
    */
   removeguest: function (req, res) {
-    var _guestid = req.param('guestid');
-    var _meetingid = req.param('meetingid');
+    var _guestID = req.param('guestID');
+    var _meetingID = req.param('meetingID');
 
     //add validation on params
     
-    var guest = {'guestID':_guestid,
-      'meetingID':_meetingid};
+    var guest = {'guestID':_guestID,
+      'meetingID':_meetingID};
       
     GuestService.removeGuest(guest,function(guests){
 	    res.write(JSON.stringify(guests));
@@ -98,11 +98,11 @@ module.exports = {
   },
 
   listguests : function(req,res){
-    var _meetingid = req.param('meetingid');
+    var _meetingID = req.param('meetingID');
 
     //add validation on params
     
-    var meeting = {'meetingID':_meetingid};
+    var meeting = {'meetingID':_meetingID};
       
     GuestService.getMeetingGuests(meeting.meetingID,function(guests){
       res.write(JSON.stringify(guests));
@@ -182,8 +182,8 @@ module.exports = {
    * `MeetingController.getcenter()`
    */
   getcenter: function (req, res) {
-    var _meetingid = req.param('meetingid');
-    MeetingService.getCenter(_meetingid,function(location){
+    var _meetingID = req.param('meetingID');
+    MeetingService.getCenter(_meetingID,function(location){
       var location={'latitude':location.latitude,'longitude':location.longitude}
 	    res.write(JSON.stringify(location));
       res.end();
@@ -191,9 +191,31 @@ module.exports = {
   },
   
   getguests: function(req,res){
-    var _meetingid = req.param('meetingid');
-    GuestService.getMeetingGuests(_meetingid,function(guests){
+    var _meetingID = req.param('meetingID');
+    GuestService.getMeetingGuests(_meetingID,function(guests){
       res.write(JSON.stringify(guests));
+      res.end();
+    });
+  },
+
+  addcomment: function(req,res){
+    var _meetingID = req.param('meetingID');
+    var _guestID = req.param('guestID');
+    var _comment = req.param('comment');
+    ChatService.addComment({'meetingID':_meetingID,
+      'guestID':_guestID,
+      'comment':_comment},function(comment){
+      console.log(comment);
+      res.write(JSON.stringify(comment));
+      res.end();
+    });
+  },
+
+  getcomments: function(req,res){
+    var _meetingID = req.param('meetingID');
+    var query = {'meetingID':_meetingID};
+    ChatService.getMeetingComments(query,function(comments){
+      res.write(JSON.stringify(comments));
       res.end();
     });
   }
