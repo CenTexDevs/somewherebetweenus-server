@@ -46,7 +46,7 @@ module.exports = {
     ], 
     function(err,result){
       if(result!= null)
-        cb(JSON.stringify(result));
+        cb(result);
       
     });      
 
