@@ -20,5 +20,31 @@ module.exports = {
 
             res.end();
         });
+    },
+    findVenues: function (req, res) {
+        var venueType = req.param('venueType');
+        var meetingID = req.param('meetingID');
+
+        var waterfall = require('async-waterfall');
+
+        waterfall([
+            function(callback) //get guests
+            {
+                MeetingService.getCenter(meetingID,function(location){
+                    console.log(location);
+                    callback(null,location);
+                });
+            },
+            function(location, callback){ //get venues
+                YelpService.searchVenues(location,venueType,function(markers){
+                    callback(null,markers);
+                });
+            }
+        ], 
+        function(err,markers){
+          if(markers!= null)
+            res.write(JSON.stringify(markers));
+            res.end();
+        });
     }
 };

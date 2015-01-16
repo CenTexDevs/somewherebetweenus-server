@@ -19,6 +19,7 @@ module.exports = {
             //console.log(guests);
             
              for (var i=0; i<guests.length; i++) {
+              console.log(guests[i]);
                 cnt = cnt + 1;
                 totalLats = totalLats + guests[i].latitude;
                 totalLongs = totalLongs + guests[i].longitude;
