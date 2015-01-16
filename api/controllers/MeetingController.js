@@ -13,6 +13,8 @@ module.exports = {
     var _nickname = req.param('nickname');
     var _meetingID = req.param('meetingID');
     var _guestID = req.param('guestID');
+    var _latitude = req.param('latitude');
+    var _longitude = = req.param('longitude');
 
     var waterfall = require('async-waterfall');
 
@@ -27,7 +29,9 @@ module.exports = {
       function(callback){
         var guest = {'nickname':_nickname,
           'meetingID':_meetingID,
-          'guestID':_guestID};
+          'guestID':_guestID,
+          'latitude':_latitude,
+          'longitude':_longitude};
         GuestService.createGuest(guest,function(result){
           callback(null);
         });
