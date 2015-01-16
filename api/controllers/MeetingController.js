@@ -14,7 +14,7 @@ module.exports = {
     var _meetingID = req.param('meetingID');
     var _guestID = req.param('guestID');
     var _latitude = req.param('latitude');
-    var _longitude = = req.param('longitude');
+    var _longitude = req.param('longitude');
 
     var waterfall = require('async-waterfall');
 
