@@ -57,7 +57,34 @@ module.exports = {
 		markerResults.push(venue);
 	    };
 
-	    return cb(markerResults);
+	    //at this point, I have the venues (markers)
+	    //now, go thorugh each and call
+	    //GoogleMapsService.getGeoLocationFromAddress(address, cb)
+	    //to geth the address
+	    //(need to form sync out of async)
+
+		// Include the async package
+		// Make sure you add "async" to your package.json
+		async = require("async");
+		  
+		// 1st para in async.each() is the array of items
+		async.each(markerResults,
+		  // 2nd param is the function that each item is passed to
+		  function(item, callback){
+
+		    // Call an asynchronous function, often a save() to DB
+		    var address = item.address;
+		    GoogleMapsService.getGeoLocationFromAddress(address,function (location){
+		      item.coordinates=location;
+		      callback();
+		    });
+		  },
+		  // 3rd param is the function to call when everything's done
+		  function(err){
+		    // All tasks are done now
+		    return cb(markerResults);
+		  }
+		);
 	});
     }
 };

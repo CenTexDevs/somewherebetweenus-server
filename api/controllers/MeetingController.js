@@ -136,15 +136,19 @@ module.exports = {
           callback(null, markers);
         });
       },
-      function(markers, callback){ //get venues
-        markers[markers.length] = { 'type':'venue',
-          'votes' : 1,
-          'winner' : 'false',
-          'nickname' : 'taco bell',
-          'latitude' : 30.60,
-          'longitude': -97.50
-        };
-        callback(null,markers);
+      function(markers, callback)//get venues
+      {
+        VenueService.getMeetingVenues(meetingID,function(venues) {
+          for(var i=0; i< venues.length; i++)
+            markers[markers.length] = { 'type':'venue',
+              'name' : venues[i].name,
+              'latitude' : venues[i].latitude,
+              'longitude': venues[i].longitude,
+              'voters':venues[i].voters.length
+            };
+
+          callback(null, markers);
+        });
       }
     ], 
     function(err,result){
