@@ -22,7 +22,7 @@ module.exports = {
 	//console.log(JSON.stringify(midCoordinate));
 	var ll=location.latitude+","+location.longitude;
 
-	yelp.search({term: venueType, ll:ll, limit:"5"}, function(error, data) {
+	yelp.search({term: venueType, ll:ll, limit:"10", "sort":1}, function(error, data) {
 	    function TransformYelpResults(yelpBusiness) {
 		//console.log(yelpBusiness);
 		return {
