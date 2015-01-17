@@ -31,6 +31,7 @@ module.exports = {
             function(callback) //get guests
             {
                 MeetingService.getCenter(meetingID,function(location){
+                    
                     console.log(location);
                     callback(null,location);
                 });

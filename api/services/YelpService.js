@@ -73,9 +73,11 @@ module.exports = {
 		  function(item, callback){
 
 		    // Call an asynchronous function, often a save() to DB
-		    var address = item.address;
-		    GoogleMapsService.getGeoLocationFromAddress(address,function (location){
-		      item.coordinates=location;
+		    var address = {"address":item.address};
+		    console.log(address);
+		    GoogleMapsService.getGeoLocationFromAddress(address,function (venuelocation){
+		    	console.log(venuelocation);
+		      item.coordinates=venuelocation;
 		      callback();
 		    });
 		  },
