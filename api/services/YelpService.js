@@ -41,9 +41,15 @@ module.exports = {
 	    }
     
 	    var venues = data.businesses.map(TransformYelpResults);
+	    var idbase = Date.now();
+
 	    for (var i = 0; i < venues.length; i++) {
+
+	    	var _id = 100 + i;
+	    	_id = idbase + _id;
 		//console.log('venue:'+i);
 		var venue = {
+			id:_id,
 		    name:venues[i].name,
 		    imageUrl:venues[i].imageUrl,
 		    mobile_url:venues[i].mobile_url,
