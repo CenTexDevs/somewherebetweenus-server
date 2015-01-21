@@ -33,7 +33,7 @@ module.exports = {
 
 
     getMeetingVenues: function(meetingID, cb) {
-        Venue.findByMeetingID2(meetingID,function handleResult(venues) {
+        Venue.findVenuesByMeetingID(meetingID,function handleResult(venues) {
             return cb(venues);
         });
     },

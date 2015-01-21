@@ -141,7 +141,7 @@ module.exports = {
         VenueService.getMeetingVenues(meetingID,function(venues) {
           for(var i=0; i< venues.length; i++)
             markers[markers.length] = { 'type':'venue',
-              'name' : venues[i].name,
+              'name' : venues[i].businessName,
               'latitude' : venues[i].latitude,
               'longitude': venues[i].longitude,
               'voters':venues[i].voters.length
