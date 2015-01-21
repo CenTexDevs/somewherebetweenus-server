@@ -51,27 +51,56 @@ module.exports = {
     },
 
 
-    removeVoter: function(meetingID,venueID,voter, cb) {
-        VenueService.getMeetingVenue(meetingID,venueID,function handleResult(venue){
-          var index = venue.voters.indexOf(voter);
-          if(index >= 0)
-            venue.voters.splice(index, 1);
+    removeVoterVotes: function(meetingID,voter, cb) {
+        Venue.findVenuesByMeetingID(meetingID,function handleResult(venues){
 
+        async = require("async");
+          
+        // 1st para in async.each() is the array of items
+        async.each(venues,
+          // 2nd param is the function that each item is passed to
+          function(venue, callback){
 
-          VenueService.updateVenue(venue, function handleResult(result) {
-            cb(result);
-        });
+              var index = venue.voters.indexOf(voter);
+              if(index >= 0)
+                venue.voters.splice(index, 1);
+
+            VenueService.updateVenue(venue,function handleResult(venue){
+                callback();
+                });
+          },
+          // 3rd param is the function to call when everything's done
+          function(err){
+            // All tasks are done now
+            return cb();
+          });
       });
     },
 
     addVoter: function(meetingID,venueID,voter, cb) {
-        VenueService.getMeetingVenue(meetingID,venueID,function handleResult(venue){
-          var index = venue.voters.indexOf(voter);
-          if(index < 0)
-            venue.voters.push(voter);
-          VenueService.updateVenue(venue, function handleResult(result) {
+        var waterfall = require('async-waterfall');
+
+        waterfall([
+          function(callback)
+          {
+            VenueService.removeVoterVotes(meetingID,voter,function handleResult(result){
+                callback(null);
+            });
+          },
+          function(callback){
+            VenueService.getMeetingVenue(meetingID,venueID,function handleResult(venue){
+              var index = venue.voters.indexOf(voter);
+              if(index < 0)
+                venue.voters.push(voter);
+              
+              VenueService.updateVenue(venue, function handleResult(result) {
+                callback(null);
+                });
+            });
+          }
+        ], 
+        function(err,result){
             cb(result);
         });
-      });
     }
 };

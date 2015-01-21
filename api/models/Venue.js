@@ -50,8 +50,10 @@ module.exports = {
       return cb(venues);
     });
   },
-  findByMeetingID2 : function(meetingID,cb) {
+  findVenuesByMeetingID : function(meetingID,cb) {
     Venue.find({'meetingID':meetingID}).exec(function handleResult(err, venues) {
+      console.log('venues is ');
+      console.log(JSON.stringify(venues));
       if (err){
         console.log(err);
       return cb(err);

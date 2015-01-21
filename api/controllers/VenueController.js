@@ -79,7 +79,10 @@ module.exports = {
     var voter = req.param('guestID');
 
     VenueService.addVoter(meetingID,venueID,voter,function(result){
-      res.write(JSON.stringify(result));
+      if(result)
+        res.write(JSON.stringify(result));
+      else
+        res.write(JSON.stringify({"status":"OK"}));
       res.end();
     });
   }, 
