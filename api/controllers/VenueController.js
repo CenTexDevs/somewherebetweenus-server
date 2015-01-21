@@ -34,12 +34,12 @@ module.exports = {
    */
   addvenue: function (req, res) {
 
-    var _businessname = req.query.businessname;
-    var _yelpid = req.query.yelpid;
-    var _meetingID = req.query.meetingID;
-    var _longitude = req.query.longitude;
-    var _latitude = req.query.latitude;
-    var _venueID = '12345';
+    var _businessname = req.param('businessname');
+    var _yelpid = req.param('yelpID');
+    var _meetingID = req.param('meetingID');
+    var _longitude = req.param('longitude');
+    var _latitude = req.param('latitude');
+    var _venueID = req.param('venueID');
 
     //add validation on params
     
@@ -74,9 +74,9 @@ module.exports = {
    * `VenuesController.addvoter()`
    */
   addvoter: function (req, res) {
-    var meetingID = req.query.meetingID;
-    var venueID = req.query.venueID;
-    var voter = req.query.voterID;
+    var meetingID = req.param('meetingID');
+    var venueID = req.param('venueID');
+    var voter = req.param('guestID');
 
     VenueService.addVoter(meetingID,venueID,voter,function(result){
       res.write(JSON.stringify(result));
@@ -88,9 +88,9 @@ module.exports = {
    * `VenuesController.removevoter()`
    */
   removevoter: function (req, res) {
-    var meetingID = req.query.meetingID;
-    var venueID = req.query.venueID;
-    var voter = req.query.voterID;
+    var meetingID = req.param('meetingID');
+    var venueID = req.param('venueID');
+    var voter = req.param('guestID');
 
     VenueService.removeVoter(meetingID,venueID,voter,function(result){
       res.write(JSON.stringify(result));
@@ -102,7 +102,7 @@ module.exports = {
    * `VenuesController.showvotes()`
    */
   showvotes: function (req, res) {
-    var meetingID = req.query.meetingID;
+    var meetingID = req.param('meetingID');
     VenueService.getMeetingVenues(meetingID,function(venues){
       for (var i=0; i<venues.length; i++) {
         res.write(venues[i].businessName+'\n');
