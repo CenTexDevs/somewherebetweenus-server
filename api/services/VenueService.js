@@ -92,7 +92,7 @@ module.exports = {
         waterfall([
           function(callback)
           {
-            VenueService.removeVoterVotes(meetingID,exceptVenueID,voter,function handleResult(result){
+            VenueService.removeVoterVotes(meetingID,venueID,voter,function handleResult(result){
                 callback(null);
             });
           },
