@@ -68,12 +68,6 @@ module.exports = {
               if(venue.voters.length > 0)
               {
                 VenueService.updateVenue(venue,function handleResult(venue){});
-                callback();
-              }
-              else if(venue.voters.length == 0 && venue.venueID != exceptVenueID)
-              {
-                VenueService.destroyVenue(venue.meetingID,venue.venueID,function handleResult(venue){ });
-                callback();
               }
               else
               {
