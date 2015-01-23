@@ -51,7 +51,7 @@ module.exports = {
     },
 
 
-    removeVoterVotes: function(meetingID,voter, cb) {
+    removeVoterVotes: function(meetingID,exceptVenueID,voter, cb) {
         Venue.findVenuesByMeetingID(meetingID,function handleResult(venues){
 
         async = require("async");
@@ -71,7 +71,7 @@ module.exports = {
                     callback();
                     });
               }
-              else
+              if(venue.voters.length == 0 && venue.venueID != exceptVenueID)
               {
                 VenueService.destroyVenue(venue.meetingID,venue.venueID,function handleResult(venue){
                     callback();
@@ -92,7 +92,7 @@ module.exports = {
         waterfall([
           function(callback)
           {
-            VenueService.removeVoterVotes(meetingID,voter,function handleResult(result){
+            VenueService.removeVoterVotes(meetingID,exceptVenueID,voter,function handleResult(result){
                 callback(null);
             });
           },
