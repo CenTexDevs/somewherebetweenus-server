@@ -140,11 +140,13 @@ module.exports = {
       {
         VenueService.getMeetingVenues(meetingID,function(venues) {
           for(var i=0; i< venues.length; i++)
-            markers[markers.length] = { 'type':'venue',
-              'name' : venues[i].businessName,
-              'latitude' : venues[i].latitude,
-              'longitude': venues[i].longitude,
-              'voters':venues[i].voters.length
+            if(venues[i].voters.length > 0){
+              markers[markers.length] = { 'type':'venue',
+                'name' : venues[i].businessName,
+                'latitude' : venues[i].latitude,
+                'longitude': venues[i].longitude,
+                'voters':venues[i].voters.length
+              };
             };
 
           callback(null, markers);
