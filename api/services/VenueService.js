@@ -67,16 +67,20 @@ module.exports = {
 
               if(venue.voters.length > 0)
               {
-                VenueService.updateVenue(venue,function handleResult(venue){
-                    callback();
-                    });
+                VenueService.updateVenue(venue,function handleResult(venue){});
+                callback();
               }
-              if(venue.voters.length == 0 && venue.venueID != exceptVenueID)
+              else if(venue.voters.length == 0 && venue.venueID != exceptVenueID)
               {
-                VenueService.destroyVenue(venue.meetingID,venue.venueID,function handleResult(venue){
-                    callback();
-                    });
+                VenueService.destroyVenue(venue.meetingID,venue.venueID,function handleResult(venue){ });
+                callback();
               }
+              else
+              {
+                callback();
+              }
+
+
           },
           // 3rd param is the function to call when everything's done
           function(err){
