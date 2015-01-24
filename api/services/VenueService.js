@@ -65,9 +65,8 @@ module.exports = {
               if(index >= 0)
                 venue.voters.splice(index, 1);
 
-              VenueService.updateVenue(venue,function handleResult(venue){});
-
-
+              VenueService.updateVenue(venue,function handleResult(venue){callback(null);});
+             
           },
           // 3rd param is the function to call when everything's done
           function(err){
