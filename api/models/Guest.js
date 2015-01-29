@@ -31,7 +31,7 @@ module.exports = {
       return cb(guests);
     });
   },
-  findByMeetingIDAndNickname: function(meetingID,guestID,cb) {
+  findByMeetingIDAndGuestID: function(meetingID,guestID,cb) {
     Guest.find({'meetingID':meetingID,'guestID':guestID}).exec(function (err, guests) {
       if (err) return cb(err);
       if (!guests) return cb(new Error('User not found.'));

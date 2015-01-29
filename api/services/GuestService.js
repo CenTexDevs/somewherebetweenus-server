@@ -10,7 +10,11 @@ module.exports = {
     },
 
     updateGuestLocation: function(guest,cb) {
-      Guest.updateGuestLocation(guest.meetingID,guest.guestID,guest.latitude,guest.longitude).exec(function handleResult(err,guest){cb(guest)});
+            Guest.update({'meetingID':guest.meetingID,'guestID':guest.guestID},{latitude:guest.latitude,longitude:guest.longitude}).exec(function handleResult(err,result) {
+                console.log('f2');
+                console.log(result);
+                cb(result);
+               });
     },
 
 

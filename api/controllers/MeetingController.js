@@ -97,6 +97,8 @@ module.exports = {
       'longitude':_longitude};
       
     GuestService.updateGuestLocation(guest,function(guest){
+      console.log('in updateGuestLocation callback');
+      console.log(guest);
       res.write(JSON.stringify(guest));
       res.end();
     });
