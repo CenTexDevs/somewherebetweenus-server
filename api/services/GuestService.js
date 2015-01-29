@@ -9,9 +9,15 @@ module.exports = {
 	Guest.destroy({meetingID:guest.meetingID,guestID:guest.guestID}).exec(function removeGuest(err,deleted){cb(deleted)});
     },
 
+    updateGuestLocation: function(guest,cb) {
+      Guest.updateGuestLocation(guest.meetingID,guest.guestID,guest.latitude,guest.longitude).exec(function handleResult(err,guest){cb(guest)});
+    },
+
+
     getMeetingGuests: function(meetingID,cb) {
 	Guest.findByMeetingID(meetingID).exec(function handleResult(err,guests){cb(guests)});
     },
+
     getMeetingGuest: function(meetingID,guestID,cb) {
 	Guest.findByMeetingID(meetingID,guestID).exec(function handleResult(err,guests){cb(guests)});
     },

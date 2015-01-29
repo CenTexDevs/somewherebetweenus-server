@@ -83,6 +83,25 @@ module.exports = {
     });
   },
 
+  updateguestlocation : function(req,res){
+    var _guestID = req.param('guestID');
+    var _latitude = req.param('latitude');
+    var _longitude = req.param('longitude');
+    var _meetingID = req.param('meetingID');
+
+    //add validation on params
+    
+    var guest = {'guestID':_guestID,
+      'meetingID':_meetingID,
+      'latitude':_latitude,
+      'longitude':_longitude};
+      
+    GuestService.updateGuestLocation(guest,function(guest){
+      res.write(JSON.stringify(guest));
+      res.end();
+    });
+  }, 
+
   /**
    * `MeetingController.removeguest()`
    */
