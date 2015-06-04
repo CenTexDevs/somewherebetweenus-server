@@ -79,7 +79,7 @@ module.exports = {
                     }
                 );
 				*/
-				console.log('using exTexting.com');
+				console.log('using ezTexting.com');
 				request.post(
                     'https://app.eztexting.com/sending/messages?format=json',
 					{"User":"sbu","Password":"sbupassword","PhoneNumbers":invitation.smsNumber,"Message":msg},
