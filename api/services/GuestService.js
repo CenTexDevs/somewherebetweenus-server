@@ -47,6 +47,7 @@ module.exports = {
                         callback(null,shortUrl);
                     })
                     .catch(function (err) {
+						var url = 'http://www.somewherebetween.us/joingroup.html?meetingID='+invitation.meetingID
                         console.log(err);
                         console.log('step 2 - end (error)');
                         callback(null,url);
