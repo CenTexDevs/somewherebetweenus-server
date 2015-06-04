@@ -40,7 +40,8 @@ module.exports = {
                 var googl = require('goo.gl');
 
                 // Shorten a long url and output the result
-                googl.shorten('http://www.somewherebetween.us/joingroup.html?meetingID='+invitation.meetingID)
+				var url = 'http://www.somewherebetween.us/joingroup.html?meetingID='+invitation.meetingID;
+                googl.shorten(url)
                     .then(function (shortUrl) {
                         console.log('step 2 - end');
                         callback(null,shortUrl);
@@ -48,7 +49,7 @@ module.exports = {
                     .catch(function (err) {
                         console.log(err);
                         console.log('step 2 - end (error)');
-                        callback(err);
+                        callback(null,url);
                     });
             },
             function(shortUrl,callback){
