@@ -63,7 +63,6 @@ module.exports = {
 
                 console.log('requesting text to '+ invitation.smsNumber);
 
-                /*
 				request.post(
                     'http://textbelt.com/text',
                     { form: { number: invitation.smsNumber, message: msg } },
@@ -80,12 +79,11 @@ module.exports = {
                         }
                     }
                 );
-				*/
+				/*
 				console.log('using ezTexting.com');
 				request.post(
 					'https://app.eztexting.com/sending/messages?format=json',
 					{form:{User:"sbu",Password:"sbupassword",PhoneNumbers:invitation.smsNumber,Message:msg}},
-                    //{form: { number: invitation.smsNumber, message: msg } },
                     function (error, response, body) {
                         if (!error && response.statusCode == 200) {
                             console.log('step 3 - end');
@@ -100,7 +98,7 @@ module.exports = {
                             callback(error);
                         }
                     }
-                );
+                );*/
 				
 				
             }
