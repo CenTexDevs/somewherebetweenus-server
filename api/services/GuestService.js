@@ -94,6 +94,8 @@ module.exports = {
                         }
                         else
                         {
+                            console.log(response);
+                            console.log(body);
                             console.log('step 3 - end (error)');
                             callback(error);
                         }
