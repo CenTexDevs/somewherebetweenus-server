@@ -82,10 +82,9 @@ module.exports = {
                 );
 				*/
 				console.log('using ezTexting.com');
-				request.post({
-					url:'https://app.eztexting.com/sending/messages?format=json',
-					form:{User:"sbu",Password:"sbupassword",PhoneNumbers:invitation.smsNumber,Message:msg}
-					},
+				request.post(
+					'https://app.eztexting.com/sending/messages?format=json',
+					{form:{User:"sbu",Password:"sbupassword",PhoneNumbers:invitation.smsNumber,Message:msg}},
                     //{form: { number: invitation.smsNumber, message: msg } },
                     function (error, response, body) {
                         if (!error && response.statusCode == 200) {
