@@ -62,15 +62,14 @@ module.exports = {
 
 				var url = 'http://www.somewherebetween.us/joingroup.html?meetingID='+invitation.meetingID;
 				url = encodeURI(url);
-				request
-				.get('https://api-ssl.bitly.com/v3/shorten?access_token=b2bbc17c2221b97c9a47148ed3c6fe937ca22fd9&longUrl='+url)
-				.on('response', function(response) {
-					console.log('step 2 - end');
-					console.log(response);
-					
-					console.log(response.data);
-                    callback(null,response.data);
-				});					
+				request('ttps://api-ssl.bitly.com/v3/shorten?access_token=b2bbc17c2221b97c9a47148ed3c6fe937ca22fd9&longUrl='+url+'&format=txt', 
+					function (error, response, body) {
+						if (!error && response.statusCode == 200) {
+							console.log(body) // Show the HTML for the Google homepage. 
+							callback(null,body);
+						}
+					}
+				);
             },
             function(shortUrl,callback){
                 console.log('step 3 - start');
