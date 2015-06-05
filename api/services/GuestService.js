@@ -62,7 +62,7 @@ module.exports = {
 
 				var url = 'http://www.somewherebetween.us/joingroup.html?meetingID='+invitation.meetingID;
 				url = encodeURI(url);
-				request('ttps://api-ssl.bitly.com/v3/shorten?access_token=b2bbc17c2221b97c9a47148ed3c6fe937ca22fd9&longUrl='+url+'&format=txt', 
+				request('https://api-ssl.bitly.com/v3/shorten?access_token=b2bbc17c2221b97c9a47148ed3c6fe937ca22fd9&longUrl='+url+'&format=txt', 
 					function (error, response, body) {
 						if (!error && response.statusCode == 200) {
 							console.log(body) // Show the HTML for the Google homepage. 
