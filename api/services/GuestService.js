@@ -67,6 +67,7 @@ module.exports = {
 				.on('response', function(response) {
 					console.log('step 2 - end');
 					console.log(response);
+					
 					console.log(response.data);
                     callback(null,response.data);
 				});					
