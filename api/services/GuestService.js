@@ -63,7 +63,7 @@ module.exports = {
 				var url = 'http://www.somewherebetween.us/joingroup.html?meetingID='+invitation.meetingID;
 				url = encodeURI(url);
 				request
-				.get('https://api-ssl.bitly.com/v3/shorten?access_token=b2bbc17c2221b97c9a47148ed3c6fe937ca22fd9&longUrl='+url+)
+				.get('https://api-ssl.bitly.com/v3/shorten?access_token=b2bbc17c2221b97c9a47148ed3c6fe937ca22fd9&longUrl='+url)
 				.on('response', function(response) {
 					console.log('step 2 - end');
 					console.log(response.data.url);
