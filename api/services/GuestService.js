@@ -33,7 +33,7 @@ module.exports = {
 
         console.log('step 1');
         waterfall([
-            function(callback)
+            /*function(callback)
             {
                 console.log('step 2 - start');
                 //shorten url part
@@ -51,7 +51,23 @@ module.exports = {
                         console.log('step 2 - end (error)');
                         //callback(null,url);
                     });
-				callback(null,url);
+				//callback(null,url);
+            },
+			*/
+			
+            function(callback)
+            {
+                console.log('step 2 - start');
+                var request = require('request');
+
+				var url = 'http://www.somewherebetween.us/joingroup.html?meetingID='+invitation.meetingID;
+				url = encodeURI(url);
+				request
+				.get('https://api-ssl.bitly.com/v3/shorten?access_token=b2bbc17c2221b97c9a47148ed3c6fe937ca22fd9&longUrl='+url+'&format=txt')
+				.on('response', function(response) {
+					console.log('step 2 - end');
+                    callback(null,response);
+				});					
             },
             function(shortUrl,callback){
                 console.log('step 3 - start');
@@ -99,8 +115,6 @@ module.exports = {
                         }
                     }
                 );*/
-				
-				
             }
         ], function(err,result){
             console.log('error handler');
